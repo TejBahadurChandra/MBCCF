@@ -1,0 +1,16 @@
+clear; close all; clc;
+data= im2double( imread('G:\matlab code\Image Dataset\114.jpg') );
+data=mat2gray(data);
+% data=reshape(data,[],1);
+% [center,U,obj_fcn] = fcm1(data, 2);
+I = im2double(data );
+    [x, y]=size(I);
+    X=min(x);
+    Y=min(y);
+    rect = [X Y 255 255];
+    [J,rect] = SRAD(I,200,0.5,rect);
+    %J,rect] = SRAD(I,niter,lambda,rect);
+    subplot(1,2,1);
+    imshow(I);
+    %subplot(1,2,2);
+    %imshow(J);

@@ -1,0 +1,21 @@
+clear all;
+clc;
+
+I = imread('G:\matlab code\paper2\Results\(6) Input Image\p54.png');
+I = imresize(I, [190 190 ]);
+rect = [10 15 40 40];
+[J,rect] = SRAD(I,2,0.5,rect);
+subplot(2,2,1);
+imshow(I);
+subplot(2,2,2);
+imshow(J,[]);
+sw=0;
+[centers,U] = fcm11(J,3);
+[centers,cidx]=sort(centers);
+U=U(:,cidx);
+[maxU,label]=max(U,[],2);
+level=(max(J(label==1)))/2;
+bw=im2bw(J,level);
+subplot(2,2,3);
+imshow(bw);
+title(sprintf('FCM0,level=%f',level));
